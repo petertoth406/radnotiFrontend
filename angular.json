@@ -13,9 +13,11 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "disableHostCheck": true,
           "options": {
             "outputPath": "dist/radnotiLoginApp",
             "index": "src/index.html",
@@ -61,6 +63,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "disableHostCheck": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "radnotiLoginApp:build:production"
