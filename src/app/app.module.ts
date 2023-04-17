@@ -8,6 +8,9 @@ import { RegistComponent } from './regist/regist.component';
 import { ProductComponent } from './product/product.component';
 import { PopupComponent } from './popup/popup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './my.http.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,21 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegistComponent,
     ProductComponent,
     PopupComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
